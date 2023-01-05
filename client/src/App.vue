@@ -4,7 +4,7 @@
   </v-container>
 
   <v-container>
-    <TasksList :task="state.tasks"></TasksList>
+    <TasksList :task="state.tasks" @delTask="deleteTask"></TasksList>
   </v-container>
 </template>
 
@@ -24,6 +24,7 @@ async function createTask(taskName, taskID) {
   await fetchTasks();
 }
 
+//AFFICHAGE DES LISTES
 onMounted(() => {
   fetchTasks();
 });
@@ -35,6 +36,13 @@ const state = reactive({
 async function fetchTasks() {
   const response = await axios.get("http://localhost:3000/todos");
   state.tasks = response.data;
+}
+
+//SUPPRIMER TÂCHE
+async function deleteTask(id) {
+  console.log(id);
+  await axios.delete(`http://localhost:3000/todos/${id}`);
+  await fetchTasks();
 }
 </script>
 
