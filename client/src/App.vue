@@ -1,11 +1,16 @@
 <template>
   <v-container>
-    <CreateTask @submitList="createTask"></CreateTask>
+    <CreateTask @submitTask="createTask"></CreateTask>
+  </v-container>
+
+  <v-container>
+    <TasksList :task="state.tasks"></TasksList>
   </v-container>
 </template>
 
 <script setup>
 import CreateTask from "./components/CreateTask.vue";
+import TasksList from "./components/TasksList.vue";
 import { reactive, onMounted } from "vue";
 import axios from "axios";
 

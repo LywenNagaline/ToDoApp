@@ -20,10 +20,10 @@ import { ref } from "vue";
 const taskName = ref("");
 const taskID = Date.now();
 
-const emit = defineEmits(["submitList"]);
+const emit = defineEmits(["submitTask"]);
 
 async function sendList() {
-  emit("submitList", taskName.value, taskID);
+  emit("submitTask", taskName.value, taskID);
   taskName.value = "";
 }
 </script>
